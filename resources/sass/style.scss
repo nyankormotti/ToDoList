@@ -1,0 +1,27 @@
+//FLOCSSにて設計
+
+// foundation
+
+@import 'foundation/reset.scss';
+@import 'foundation/header.scss';
+@import 'foundation/footer.scss';
+
+// layout
+@import 'layout/background.scss';
+
+// object
+// component
+@import'object/component/form.scss';
+@import'object/component/btn.scss';
+
+// layout
+@import'object/project/top.scss';
+@import'object/project/task.scss';
+@import'object/project/sidebar.scss';
+@import'object/project/mymenu.scss';
+
+// utility
+@import'object/utility/link.scss';
+@import'object/utility/err.scss';
+@import'object/utility/accordion.scss';
+

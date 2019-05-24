@@ -1,0 +1,262 @@
+
+
+.task__section{
+    margin-top:25px;
+    margin-right:auto;
+    margin-left:auto;
+    width:80%;
+    min-height:300px;
+
+    display:flex;
+    flex-wrap:wrap;
+    align-items:flex-start;
+    justify-content:space-between;
+    @include mq(){
+        width:90%;
+    }
+}
+
+.tasklist{
+    margin:10px;
+    width:60%;
+    min-height:200px;
+    // border:1px solid white;
+    @include xl(){
+        width:50%;
+    }
+    @include mq(){
+        width:100%;
+    }
+    
+}
+
+.task{
+    width:95%;
+    margin:5px auto;
+    min-height:200px;
+    background:$background-color_white;
+    border-radius:5px;
+    &__titlearea{
+        margin:0 auto;
+        width:90%;
+        display:flex;
+        align-items:center;
+        justify-content:space-between;
+    }
+    
+    &__title{
+        margin:0;
+        width:50%;
+        padding:$space_xl;
+        box-sizing:border-box;
+        font-size:$font-size_3l;
+        font-family:$font-family_corp;
+        color:$font-color_main;
+        text-align:center;
+        @include xl(){
+            font-size:$font-size_xxl;
+        }
+        @include mq(){
+            font-size:$font-size_xxl;
+        }
+        
+    }
+    &__count{
+        @include mq(){
+            font-size:$font-size_s;
+        }
+    }
+    &__link{
+        font-size:$font-size_m;
+        color:$font-color_purple;
+        @include mq(){
+            font-size:$font-size_ss;
+        }
+    }
+    &__titlesub{
+        width:40%;
+        text-align:right;
+        margin-right:10px;
+        line-height:150%;
+    }
+    &__listarea{
+        margin:20px auto;
+        width:90%;
+        &__parts{
+            width:100%;
+            height:80px;
+            margin-top:20px;
+            margin-bottom:20px;
+            display:flex;
+            align-items:center;
+            justify-content:space-between;
+        }
+        &--show{
+            width:80%;
+            height:100%;
+            box-sizing: border-box;
+            border: 1px solid rgb(112,112,112);
+            border-radius:3px;
+            box-shadow:0 2px 2px 0 rgba(0,0,0,.14), 0 3px 1px -2px rgba(0,0,0,.2), 0 1px 5px 0 rgba(0,0,0,.12);
+        }
+        &--action{
+            width:18%;
+            height:100%;
+            box-sizing: border-box;
+        }
+    }
+
+
+
+
+
+    // ページネーション
+    &__pagination{
+        width:100%;
+        height:30px;
+        text-align:center;
+        line-height:30px;
+    }
+    
+}
+
+// task一覧
+.parts{
+    width:95%;
+    height:70%;
+    padding:4px;
+    box-sizing:border-box;
+    display:flex;
+    align-items:flex-start;
+    justify-content:flex-start;
+    @include mq(){
+        width:99%;
+    }
+    &__color{
+        width:5%;
+        height:100%;
+        background:$background-color_red;
+        margin-right:5px;
+        &__blue{
+            width:5%;
+            height:100%;
+            background:$background-color_blue;
+            margin-right:5px;
+        }
+        &__orange{
+            width:5%;
+            height:100%;
+            background:$background-color_orange;
+            margin-right:5px;
+        }
+        &__green{
+            width:5%;
+            height:100%;
+            background:$background-color_green;
+            margin-right:5px;
+        }
+        &__pink{
+            width:5%;
+            height:100%;
+            background:$background-color_pink;
+            margin-right:5px;
+        }
+    }
+    &__content{
+        width:100%;
+        height:100%;
+        &__category{
+            font-size:$font-size_s;
+            &__name{
+                display:inline-block;
+                padding:5px;
+                background:$background-color_moreLightGray;
+            }
+        }
+        &__todo{
+            font-size:$font-size_l;
+            padding:5px 0;
+            box-sizing:border-box;
+            @include xl(){
+                font-size:$font-size_m;
+            }
+            @include mq(){
+                font-size:$font-size_s;
+            }
+            
+        }
+    }
+}
+
+// task作成日・更新日
+.todo__date{
+    margin-top:3px;
+    margin-right:8px;
+    font-size:$font-size_s;
+    text-align:right;
+    color:$font-color_lightGray;
+    @include xl(){
+        font-size:$font-size_ss;
+    }
+    @include mq(){
+        font-size:6px;
+    }
+    
+
+}
+
+// task ボタン
+.btntask__content{
+    color:$font-color_white;
+    min-width:60px;
+    height:50%;
+    font-size:$font-size_m;
+    font-weight:bold;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    &--action{
+        display:block;
+        text-decoration:none;
+        padding:8px 15px;
+        color:$font-color_default;
+        background:$font-color_moreLightGray;
+        border:none;
+        box-shadow:0 2px 2px 0 rgba(0,0,0,.14), 0 3px 1px -2px rgba(0,0,0,.2), 0 1px 5px 0 rgba(0,0,0,.12);
+        &--finish:hover{
+            background:$background-color_red;
+            color:$font-color_white;
+        }
+        &--edit:hover{
+            background:$background-color_orange;
+            color:$font-color_white;
+        }
+        &--restore:hover{
+            background:$background-color_blue;
+            color:$font-color_white;
+        }
+    }
+
+    &__btn--action{
+        font-size:$font-size_m;
+        font-weight:bold;
+        padding:8px 15px;
+        color:$font-color_default;
+        background:$font-color_moreLightGray;
+        border:none;
+        box-shadow:0 2px 2px 0 rgba(0,0,0,.14), 0 3px 1px -2px rgba(0,0,0,.2), 0 1px 5px 0 rgba(0,0,0,.12);
+        
+    }
+}
+
+.link{
+    font-size:$font-size_m;
+    @include mq(){
+        font-size:$font-size_s;
+    }
+    color:$font-color_purple;
+    &__content{
+        margin-bottom:16px;
+    }
+}
+

@@ -1,0 +1,12 @@
+
+
+.link{
+    font-size:$font-size_m;
+    @include mq(){
+        font-size:$font-size_s;
+    }
+    color:$font-color_purple;
+    &__content{
+        margin-bottom:16px;
+    }
+}

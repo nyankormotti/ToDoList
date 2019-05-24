@@ -1,0 +1,116 @@
+@import '../../foundation/variable.scss';
+
+input::placeholder{
+    color:$font-color_clear;
+}
+
+textarea::placeholder{
+    color:$font-color_clear;
+}
+
+.form{
+    width:40%;
+    min-height:200px;
+    border-radius:5px;
+    margin-top:80px;
+    margin-right:auto;
+    margin-left:auto;
+    background:$background-color_white;
+    @include mq(){
+        width:80%;
+    }
+    &__title{
+        width:100%;
+        padding:$space_xl;
+        box-sizing:border-box;
+        font-size:$font-size_3l;
+        font-family:$font-family_corp;
+        color:$font-color_main;
+        text-align:center;
+        @include mq(){
+            font-size:$font-size_xxl;
+        }
+    }
+    &__content{
+        width:100%;
+        padding:$space_xl $space_xl_l;
+        box-sizing:border-box;
+        font-size:$font-size_m;
+        @include mq(){
+            font-size:$font-size_s;
+        }
+    }
+    &__descript{
+        margin-bottom:$space_l;
+        color:$font-color_gray;
+        line-height:150%;
+    }
+    &--edit{
+        width:30%;
+        @include mq(){
+            width:80%;
+        }
+    }
+}
+
+.textfield{
+    &__label{
+        font-size:$font-size_default;
+        @include mq(){
+            font-size:$font-size_m;
+        }
+    }
+    &__area{
+        width:80%;
+        padding:$space_xl 0;
+        @include mq(){
+        width:100%;
+        }
+    }
+    &__input{
+        width:100%;
+        border:none;
+        border-bottom:1px solid $font-color_clear;
+        font-size:$font-size_default;
+        padding:4px 0;
+        @include mq(){
+            font-size:$font-size_m;
+        }
+    }
+    &__comment{
+        width:100%;
+        padding:4px 4px;
+        border:1px solid $font-color_clear;
+        border-radius:5px;
+        box-sizing:border-box;
+        font-size:$font-size_default;
+        @include mq(){
+            font-size:$font-size_m;
+        }
+        &__area{
+            width:100%;
+            padding-top:$space_xl;
+            padding-bottom:$space_s;
+        }
+    }
+}
+
+.passSave{
+    &__content{
+        letter-spacing:0;
+        margin-bottom:16px;
+        color:$font-color_gray;
+        font-size:$font-size_m;
+        @include mq(){
+            font-size:$font-size_s;
+        }
+    }
+}
+
+.comment{
+    &__content{
+        width:100%;
+        margin-bottom:$space_xl;
+        text-align:right;
+    }
+}

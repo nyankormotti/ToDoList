@@ -1,0 +1,97 @@
+.p-barner{
+    width:100%;
+    height:350px;
+    text-align:center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color:$font-color_white;
+    font-family:$font-family_corp;
+    font-size:$font-size_4l;
+    line-height:  150%;
+    @include mq(){
+        font-size:$font-size_3l;
+    }
+    &__title{
+        margin-top:180px;
+        @include mq(){
+            margin-top:90px;
+        }
+    }
+}
+
+.p-entrance{
+    width:100%;
+    height:344px;
+    @include mq(){
+        height:307px;
+    }
+    background:rgb(229,229,229);
+
+    &__content{
+        margin-top:100px;
+        @include mq(){
+            margin-top:50px;
+        }
+        width:70%;
+        height:90%;
+        margin-right:auto;
+        margin-left:auto;
+        display:flex;
+        flex-wrap:wrap;
+        align-items:center;
+        justify-content:space-between;
+    }
+    &__panel{
+        width:40%;
+        height:50%;
+        margin:0 auto;
+        @include mq() {
+            width:100%;
+            height:120px;
+        }
+        &__title{
+            text-align:center;
+            margin-top:20px;
+            margin-bottom:20px;
+            font-size:$font-size_xl;
+            font-family:$font-family_corp;
+            @include mq(){
+                font-size:$font-size_l;
+            }
+        }
+        &__btn{
+            display:block;
+            margin-top:50px;
+            margin-right:auto;
+            margin-left:auto;
+            width:40%;
+            text-align:center;
+            border:none;
+            border-radius:5px;
+            font-size:$font-size_xl;
+            text-decoration:none;
+            padding:10px 20px;
+            color:$font-color_white;
+            font-family:$font-family_corp;
+            @include mq(){
+                margin-top:0;
+                width:50%;
+            }
+        }
+    }
+
+    &__panel:last-child{
+        @include mq(){
+                margin-top:-80px;
+            }
+    }
+
+    .signup__btn{
+        background:rgb(80, 198, 166);
+    }
+
+    .login__btn{
+        background:rgb(71,144,187);
+    }
+}

@@ -1,0 +1,26 @@
+@import 'variable.scss';
+@import 'mixin.scss';
+
+.footer{
+    // position:absolute;
+    // bottom:-45px;
+    background:$background-color_main;
+    color:$font-color_white;
+    text-align:center;
+    width:100%;
+    padding-top:$space_l;
+    padding-bottom:$space_l;
+    font-size:$font-size_default;
+    @include mq() {
+            font-size:$font-size_s;
+            padding-top:18px;
+            padding-bottom:18px;
+        }
+    &__menu{
+        color:$font-color_white;
+        text-decoration:none;
+        &--contact{
+            text-decoration:underline;
+        }
+    }
+}

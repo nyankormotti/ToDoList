@@ -1,0 +1,25 @@
+@import '../../foundation/variable.scss';
+
+.err{
+    &__comment{
+        color:$font-color_red;
+        height:10px;
+        padding:5px 0;
+    }
+    &__block{
+        background:$font-color_pink;
+    }
+    &__msg{
+        color:$font-color_red;
+        padding:10px 0;
+        &__main{
+            color:$font-color_red;
+            padding:10px 0;
+        }
+    }
+}
+
+.inactive{
+    background:$background-color_lightGray;
+}
+

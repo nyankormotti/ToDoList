@@ -1,0 +1,32 @@
+
+.wrap{
+    background-attachment: fixed;
+    background-size:cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    &__top{
+        background-image: url(../images/ToDo.jpg);
+    }
+    &__main{
+        background-image: url(../images/Task.jpg);
+    }
+}
+
+
+.main{
+    width:100%;
+    min-height:calc(100vh - 185px);
+    &__task{
+        min-height:calc(100vh - 130px);
+    }
+}
+
+// .main1{
+//     background-image: url(../images/ToDo.jpg);
+//     overflow:hidden;
+//     background-attachment: fixed;
+//     background-size:cover;
+//     background-position: center;
+//     background-repeat: no-repeat;
+// }
