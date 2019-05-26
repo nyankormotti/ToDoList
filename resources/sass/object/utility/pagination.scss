@@ -1,0 +1,38 @@
+.pagination{
+    display:flex;
+    justify-content:center;
+    width:100%;
+    margin-top:10px;
+    margin-bottom:10px;
+}
+
+.page-item{
+    width:30px;
+    height:30px;
+    @include mq(){
+        width:25px;
+        height:25px;
+        line-height:25px;
+        margin-right:10px;
+    }
+    margin-right:5px;
+    background:$background-color_moreLightGray;
+    
+    &:last-child{
+        margin-right:0;
+    }
+    &.active{
+        background:$background-color_main;
+    }
+    &.active > .page-link{
+        color:$font-color_white;
+    }
+}
+
+.page-link{
+    text-decoration:none;
+    color:$font-color_default;
+    @include mq(){
+        font-size:$font-size_m;
+    }
+}

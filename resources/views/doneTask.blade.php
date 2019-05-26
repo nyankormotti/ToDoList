@@ -1,6 +1,6 @@
 @extends('layouts/top')
 
-@section('title','タスク一覧')
+@section('title','完了タスク一覧')
 @include('common.head')
 
 @include('common.header')
@@ -13,47 +13,14 @@
 
         <!-- sidebar -->
         <section class="sidebar">
-            <!-- create form -->
-            <div class="create">
-                <h2 class="sidebar__title create__title">Create Task</h2>
-                <form class="sidebar__form" action="/task/create" method="post">
-                    {{ csrf_field() }}
-                    @if($errors->has('task_name'))
-                    <div class="err__msg--create">{{$errors->first('task_name')}}</div>
-                    @endif
-                    <div class="sidebar__input">
-                        <input class="sidebar__input__area" type="text" name="task_name" autocomplete=off placeholder="15字以内でご記載ください。" value="{{old('task_name')}}">
-                    </div>
-                    <div class=" sidebar__category">
-                        <p class="sidebar__category__title">カテゴリ選択: </p>
-                        <select name="category_id" class="sidebar__category__select">
-                            @foreach($category_data as $c_data)
-                            <option value="{{$c_data->category_no}}">{{$c_data->category_name}}</option>
-                            @endforeach
-                        </select>
-                    </div>
-
-                    <div class="create__bottun">
-                        <p class="linkcreate">
-                            <a class="linkcreate__category" href="myMenu">※カテゴリ変更はこちら</a>
-                        </p>
-                        <div class="btn__content btn__form create__bottun__btn">
-                            <input class="btn" type="submit" value="作成">
-                        </div>
-                    </div>
-
-                </form>
-
-            </div>
 
             <!-- search form -->
-            <div class="search">
+            <div class="search search--done">
                 <h2 class="sidebar__title">Search</h2>
-                <form class="sidebar__form" action="/task" method="get">
-                    {{ csrf_field() }}
+                <form class="sidebar__form" action="/doneTask" method="get">
                     <div class="sidebar__input">
                         @if(!empty($search))
-                        <input class="sidebar__input__area" type="text" name="search_name" autocomplete=off placeholder="キーワード" value={{$search_name}}>
+                        <input class="sidebar__input__area" type="text" name="search_name" autocomplete=off placeholder="キーワード" value="{{$search_name}}">
                         @else
                         <input class="sidebar__input__area" type="text" name="search_name" autocomplete=off placeholder="キーワード">
                         @endif
@@ -71,6 +38,41 @@
                             @endforeach
                         </select>
                     </div>
+
+                    <div class="sidebar__date">
+                        <p class="sidebar__date__title">期間 (完了年月日)</p>
+                        @if($errors->has('strat_date'))
+                        <div class="err__msg--create">{{$errors->first('strat_date')}}</div>
+                        @elseif($errors->has('end_date'))
+                        <div class="err__msg--create">{{$errors->first('end_date')}}</div>
+                        @endif
+                        <div class="sidebar__date__input">
+                            <div class="sidebar__date__input__area">
+
+                                @if(!empty($search)&&$errors->has('strat_date')||$errors->has('end_date'))
+                                <input class="sidebar__date__input__area--write datepicker" type="text" name="strat_date" autocomplete=off placeholder="開始年月日" value="{{old('strat_date')}}">
+                                @elseif(!empty($search))
+                                <input class="sidebar__date__input__area--write datepicker" type="text" name="strat_date" autocomplete=off placeholder="開始年月日" value="{{$strat_date}}">
+                                @else
+                                <input class="sidebar__date__input__area--write datepicker" type="text" name="strat_date" autocomplete=off placeholder="開始年月日">
+                                @endif
+                            </div>
+
+                            <p class="sidebar__date__input__between">〜</p>
+                            <div class="sidebar__date__input__area">
+
+                                @if(!empty($search)&&$errors->has('end_date')||$errors->has('end_date'))
+                                <input class="sidebar__date__input__area--write datepicker" type="text" name="end_date" autocomplete=off placeholder="終了年月日" value="{{old('end_date')}}">
+                                @elseif(!empty($search))
+                                <input class="sidebar__date__input__area--write datepicker" type="text" name="end_date" autocomplete=off placeholder="終了年月日" value="{{$end_date}}">
+                                @else
+                                <input class="sidebar__date__input__area--write datepicker" type="text" name="end_date" autocomplete=off placeholder="終了年月日">
+                                @endif
+                            </div>
+
+                        </div>
+                    </div>
+
                     <div class="search__button">
                         <fieldset class="sort">
                             <legend class="sort__title">並び順</legend>
@@ -80,7 +82,7 @@
                                 @else
                                 <input type="radio" name="sort" value="new">
                                 @endif
-                                作成日の新しい順
+                                完了日の新しい順
                             </label>
                             <br>
                             <label class="sort__label">
@@ -89,7 +91,7 @@
                                 @else
                                 <input type="radio" name="sort" value="old">
                                 @endif
-                                作成日の古い順
+                                完了日の古い順
                             </label>
                         </fieldset>
                         <div class="btn__content btn__form search__button__btn">
@@ -106,22 +108,20 @@
             <div class="task">
                 <!-- task title area -->
                 <div class="task__titlearea">
-                    <h2 class="task__title">Task</h2>
+                    <h2 class="task__title task__title--done">Done Task</h2>
                     <div class="task__titlesub">
                         <p class="task__count">
                             @if(count($task_data) > 0)
                             <span>{{$task_data->firstItem()}}</span> - <span>{{$task_data->lastItem()}}</span><span> / {{$task_data->total()}}</span>
                             @endif
-
-                        </p>
-                        <p class="task__link">
-                            <a class="tasl__link__text" href="/doneTask">※完了済はこちら</a>
                         </p>
                     </div>
                 </div>
+                @if(count($errors) > 0)
+                <div class="err__done">検索条件が間違っています。</div>
+                @endif
 
                 <!-- task list area -->
-
                 <div class="task__listarea">
                     @if(count($task_data) > 0)
                     @foreach($task_data as $t_data)
@@ -154,22 +154,15 @@
 
                             </div>
                             <div class="todo__date">
-                                作成:&nbsp;<span>{{$t_data->created_at->format('Y/m/d')}}</span> | <span>更新:&nbsp;{{$t_data->updated_at->format('Y/m/d')}}</span>
+                                完了:&nbsp;<span>{{$t_data->updated_at->format('Y/m/d')}}</span>
                             </div>
                         </div>
                         <div class="task__listarea--action">
                             <div class="btntask__content">
                                 @if(!empty($search))
-                                <a class="btntask__content--action btntask__content--action--finish" href="task/done?id={{$t_data->id}}&search_name={{$search_name}}&search_category={{$search_category}}&sort={{$sort}}&search={{$search}}">完了</a>
+                                <a class="btntask__content--action btntask__content--action--restore" href="doneTask/restore?id={{$t_data->id}}&search_name={{$search_name}}&search_category={{$search_category}}&strat_date={{$strat_date}}&end_date={{$end_date}}&sort={{$sort}}&search={{$search}}">復元</a>
                                 @else
-                                <a class="btntask__content--action btntask__content--action--finish" href="task/done?id={{$t_data->id}}">完了</a>
-                                @endif
-                            </div>
-                            <div class="btntask__content">
-                                @if(!empty($search))
-                                <a class="btntask__content--action btntask__content--action--edit" href="editTask?id={{$t_data->id}}&search_name={{$search_name}}&search_category={{$search_category}}&sort={{$sort}}&search={{$search}}">編集</a>
-                                @else
-                                <a class="btntask__content--action btntask__content--action--edit" href="editTask?id={{$t_data->id}}">編集</a>
+                                <a class="btntask__content--action btntask__content--action--restore" href="doneTask/restore?id={{$t_data->id}}">復元</a>
                                 @endif
                             </div>
                         </div>
@@ -181,7 +174,7 @@
                 <!-- pagination -->
                 <div class="task__pagination">
                     @if(!empty($search))
-                    {{ $task_data->appends(['search_name'=>$search_name,'search_category'=>$search_category,'sort'=>$sort,'search'=>$search])->links('vendor.pagination.original_pagination_view') }}
+                    {{ $task_data->appends(['search_name'=>$search_name,'search_category'=>$search_category,'strat_date'=>$strat_date,'end_date'=>$end_date,'sort'=>$sort,'search'=>$search])->links('vendor.pagination.original_pagination_view') }}
                     @else
                     {{ $task_data->links('vendor.pagination.original_pagination_view') }}
                     @endif

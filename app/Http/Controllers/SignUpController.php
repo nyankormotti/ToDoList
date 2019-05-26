@@ -13,6 +13,9 @@ class SignUpController extends Controller
 {
     public function index()
     {
+        if (Auth::check()) {
+            return redirect()->action('TaskController@index');
+        }
         return view('signUp');
     }
 

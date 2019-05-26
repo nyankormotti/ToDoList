@@ -1,18 +1,11 @@
 @section('header')
 
-<?php
-if ($flg) {
-    ?>
 
-    <body class="wrap wrap__main">
-    <?php
-} else {
-    ?>
-
-        <body class="wrap wrap__top">
-        <?php
-    }
-    ?>
+@if (Auth::check())
+<body class="wrap wrap__main">
+@else
+<body class="wrap wrap__top">
+@endif
         <header class="header">
             <div class="header__section">
                 <h1 class="header__section__title">

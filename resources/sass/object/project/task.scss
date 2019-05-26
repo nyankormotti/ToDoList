@@ -12,7 +12,7 @@
     align-items:flex-start;
     justify-content:space-between;
     @include mq(){
-        width:90%;
+        width:99%;
     }
 }
 
@@ -33,9 +33,12 @@
 .task{
     width:95%;
     margin:5px auto;
-    min-height:200px;
+    min-height:631px;
     background:$background-color_white;
     border-radius:5px;
+    @include xl(){
+        min-height:620px;
+    }
     &__titlearea{
         margin:0 auto;
         width:90%;
@@ -59,6 +62,14 @@
         @include mq(){
             font-size:$font-size_xxl;
         }
+        &--done{
+            @include xl(){
+            font-size:$font-size_xl;
+            }
+            @include mq(){
+            font-size:20px;
+            }
+        }
         
     }
     &__count{
@@ -80,7 +91,10 @@
         line-height:150%;
     }
     &__listarea{
-        margin:20px auto;
+        // margin:20px auto;
+        margin-top:20px;
+        margin-left:auto;
+        margin-right:auto;
         width:90%;
         &__parts{
             width:100%;
@@ -90,6 +104,9 @@
             display:flex;
             align-items:center;
             justify-content:space-between;
+            &:last-child{
+                margin-bottom:0;
+            }
         }
         &--show{
             width:80%;
@@ -116,6 +133,7 @@
         height:30px;
         text-align:center;
         line-height:30px;
+        // display:flex;
     }
     
 }
@@ -133,10 +151,12 @@
         width:99%;
     }
     &__color{
-        width:5%;
-        height:100%;
-        background:$background-color_red;
-        margin-right:5px;
+        &__red{
+            width:5%;
+            height:100%;
+            background:$background-color_red;
+            margin-right:5px;
+        }
         &__blue{
             width:5%;
             height:100%;

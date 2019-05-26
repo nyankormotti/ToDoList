@@ -16,6 +16,23 @@
             color:$font-color_red;
             padding:10px 0;
         }
+        &--create{
+            color:$font-color_red;
+            padding:5px 0;
+            font-size:$font-size_m;
+        }
+    }
+    &__done{
+        display:none;
+        @include mq(){
+            width:90%;
+            text-align:center;
+            display:block;
+            color:$font-color_red;
+            height:10px;
+            padding:5px 0;
+        }
+
     }
 }
 

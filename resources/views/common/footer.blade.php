@@ -1,7 +1,13 @@
 @section('footer')
 <footer class="footer">
-    Copyright <a href="index.php" class="footer__menu">nyanko_R_motti</a> .All Rights Reserved
-    &nbsp;&nbsp;&nbsp;&nbsp;<a href="contact" class="footer__menu footer__menu--contact">CONTACT</a>
+    Copyright
+    @if (Auth::check())
+    <a href="/task" class="footer__menu">
+        @else
+        <a href="/" class="footer__menu">
+            @endif
+            nyanko_R_motti</a> .All Rights Reserved
+        &nbsp;&nbsp;&nbsp;&nbsp;<a href="contact" class="footer__menu footer__menu--contact">CONTACT</a>
 </footer>
 
 <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>

@@ -10,6 +10,9 @@ use Illuminate\Support\Facades\Hash;
 class LoginTaskController extends Controller
 {
     public function index(){
+        if (Auth::check()) {
+            return redirect()->action('TaskController@index');
+        }
         return view( 'loginTask');
     }
 
