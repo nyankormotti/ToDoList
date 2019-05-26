@@ -53,6 +53,7 @@ class EditTaskController extends Controller
             }
         }
         $task->save();
+        $request->session()->flash('status', 'タスクを編集しました。');
 
         return redirect()->action('TaskController@index', $request);
     }

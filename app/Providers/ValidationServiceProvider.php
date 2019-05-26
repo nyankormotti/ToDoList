@@ -4,9 +4,9 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Validators\Validator;
-use App\Http\Validators\SignUpValidator;
+use App\Http\Validators\CustomValidator;
 
-class SignUpServiceProvider extends ServiceProvider
+class ValidationServiceProvider extends ServiceProvider
 {
     /**
      * Register services.
@@ -27,7 +27,7 @@ class SignUpServiceProvider extends ServiceProvider
     {
         $validator = $this->app['validator'];
         $validator->resolver(function($translator, $data, $rules, $messages) {
-            return new SignUpValidator( $translator, $data, $rules, $messages);
+            return new CustomValidator( $translator, $data, $rules, $messages);
         });
     }
 }

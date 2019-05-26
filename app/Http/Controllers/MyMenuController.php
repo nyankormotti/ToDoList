@@ -7,6 +7,9 @@ use App\Category;
 use App\User;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\RegistCategoryRequest;
+use App\Http\Requests\ChangeEmailRequest;
+use App\Http\Requests\ChangePasswordRequest;
+use Illuminate\Support\Facades\Hash;
 
 class MyMenuController extends Controller
 {
@@ -15,10 +18,10 @@ class MyMenuController extends Controller
         if (!Auth::check()) {
             return redirect()->action('LoginTaskController@index');
         }
-
         $id = Auth::id();
+        $userData = User::where('id', $id)->first();
         $categoryData = Category::where('user_id', $id)->where('delete_flg', false)->get();
-        return view('myMenu',['category_data' => $categoryData]);
+        return view('myMenu',['user_data'=> $userData,'category_data' => $categoryData,]);
     }
 
     public function registCategory( RegistCategoryRequest $request){
@@ -42,6 +45,37 @@ class MyMenuController extends Controller
         $category4->save();
         $category5->save();
 
-        return redirect()->action( 'TaskController@index');
+        $request->session()->flash('status', 'カテゴリーを編集しました。');
+
+        return redirect()->action( 'TaskController@index', $request);
     }
+
+    public function changeEmail(ChangeEmailRequest $request){
+        $id = Auth::id();
+        $user = User::where('id',$id)->first();
+        $user->email =$request->email;
+        $user->save();
+        $request->session()->flash('status', 'メールアドレスを変更しました。');
+        return redirect()->action('TaskController@index');
+    }
+
+    public function changePassword(ChangePasswordRequest $request){
+
+        $id = Auth::id();
+        $user = User::where('id', $id)->first( );
+        $user->password = Hash::make( $request->password);
+        $user->save();
+
+        $request->session()->flash('status', 'パスワードを変更しました。');
+        return redirect()->action('TaskController@index');
+    }
+
+    public function  withdraw(){
+        $id = Auth::id();
+        $user = User::where('id', $id)->first();
+        $user->delete_flg = true;
+        $user->save();
+        return redirect()->action('LoginTaskController@logoutTask');
+    }
+
 }

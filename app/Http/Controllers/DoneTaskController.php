@@ -20,7 +20,7 @@ class DoneTaskController extends Controller
 
         $id = Auth::id();
         $categoryData = Category::where('user_id', $id)->where('delete_flg', false)->get();
-
+        $status = $request->session()->get('status');
         if (!empty($request->search)) {
             $query = Task::query();
             // 検索するパラメータを取得
@@ -57,7 +57,7 @@ class DoneTaskController extends Controller
             }
             $taskData = $query->paginate(5);
 
-            return view( 'doneTask', ['category_data' => $categoryData, 'task_data' => $taskData])
+            return view( 'doneTask', ['category_data' => $categoryData, 'task_data' => $taskData, 'status' => $status])
                 ->with('search_name', $s_name)
                 ->with('search_category', $s_category)
                 ->with( 'strat_date', $s_strat_date)
@@ -66,7 +66,7 @@ class DoneTaskController extends Controller
                 ->with('search', $s_submit);
         } else {
             $taskData = Task::where('user_id', $id)->where('done_flg', true)->orderBy( 'updated_at', 'desc')->paginate(5);
-            return view('doneTask', ['category_data' => $categoryData, 'task_data' => $taskData]);
+            return view('doneTask', ['category_data' => $categoryData, 'task_data' => $taskData, 'status' => $status]);
         }
     }
 
@@ -76,6 +76,7 @@ class DoneTaskController extends Controller
         $task = Task::where('id', $request->id)->first();
         $task->done_flg = false;
         $task->save();
+        $request->session()->flash('status', 'タスクを復元しました。');
 
         return redirect()->action('DoneTaskController@index', $request);
     }

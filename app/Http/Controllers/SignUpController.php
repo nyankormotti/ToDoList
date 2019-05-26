@@ -40,7 +40,7 @@ class SignUpController extends Controller
             $category->user_id = $id;
             $category->save();
         }
-
+        $request->session()->flash('status', 'ようこそ  ' . $user->name . ' さん');
         return redirect()->action('TaskController@index');
     }
 }

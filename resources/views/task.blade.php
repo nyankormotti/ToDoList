@@ -26,7 +26,7 @@
                     </div>
                     <div class=" sidebar__category">
                         <p class="sidebar__category__title">カテゴリ選択: </p>
-                        <select name="category_id" class="sidebar__category__select">
+                        <select name="category_no" class="sidebar__category__select">
                             @foreach($category_data as $c_data)
                             <option value="{{$c_data->category_no}}">{{$c_data->category_name}}</option>
                             @endforeach
@@ -121,7 +121,6 @@
                 </div>
 
                 <!-- task list area -->
-
                 <div class="task__listarea">
                     @if(count($task_data) > 0)
                     @foreach($task_data as $t_data)

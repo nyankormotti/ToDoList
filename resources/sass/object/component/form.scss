@@ -15,9 +15,11 @@ textarea::placeholder{
     margin-top:80px;
     margin-right:auto;
     margin-left:auto;
+    margin-bottom:80px;
     background:$background-color_white;
     @include mq(){
         width:80%;
+        
     }
     &__title{
         width:100%;
@@ -47,7 +49,6 @@ textarea::placeholder{
         &--edit{
             @include xl(){
             font-size:$font-size_s;
-            
         }
         }
     }

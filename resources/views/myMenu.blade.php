@@ -78,59 +78,89 @@
                         </div>
                     </form>
         </section>
+
         <!-- メールアドレス変更 -->
         <section class="myMenu__parts myMenu__email toggle_wrap">
-            <div class="myMenu__title toggle_switch">
-                <p>メールアドレス変更</p>
-            </div>
-            <div class="form__content toggle_contents">
-                <p class="form__descript">新しいメールアドレスを入力してください。</p>
-                <div>
-                    <label class="textfield__label" for="Email">メールアドレス(必須)</label>
+            @if($errors->has('email'))
+            <div class="myMenu__title toggle_switch open">
+                @else
+                <div class="myMenu__title toggle_switch">
+                    @endif
+                    <p>メールアドレス変更</p>
                 </div>
-                <div class="err_msg"></div>
-                <div class="textfield__area">
-                    <input type="text" class="textfield__input" name="email" placeholder="メールアドレスを入力してください。" autocomplete="off">
-                </div>
-                <div class="btn__myMenu__user btn__form">
-                    <input class="btn" type="submit" name="submit" value="送信">
-                </div>
-            </div>
+                @if($errors->has('email'))
+                <form class="form__content toggle_contents" action="myMenu/changeEmail" method="post" style="display:block;">
+                    @else
+                    <form class="form__content toggle_contents" action="myMenu/changeEmail" method="post">
+                        @endif
+                        {{ csrf_field() }}
+                        <p class="form__descript">メールアドレスを変更できます。</p>
+                        <div>
+                            <label class="textfield__label" for="Email">メールアドレス(必須)</label>
+                        </div>
+                        @if($errors->has('email'))
+                        <div class="err__msg">{{$errors->first('email')}}</div>
+                        @endif
+                        <div class="textfield__area">
+                            @if($errors->has('email'))
+                            <input type="text" class="textfield__input" name="email" autocomplete="off" value="{{old('email')}}">
+                            @else
+                            <input type="text" class="textfield__input" name="email" autocomplete="off" value="{{$user_data->email}}">
+                            @endif
+                        </div>
+                        <div class="btn__myMenu__user btn__form">
+                            <input class="btn" type="submit" name="email_change" value="送信">
+                        </div>
+                    </form>
         </section>
+
         <!-- パスワード変更 -->
         <section class="myMenu__parts myMenu__pass toggle_wrap">
-            <div class="myMenu__title toggle_switch">
-                <p>パスワード変更</p>
+            @if($errors->has('old_pass') || $errors->has('password'))
+            <div class="myMenu__title toggle_switch open">
+                @else
+                <div class="myMenu__title toggle_switch">
+                    @endif
+                    <p>パスワード変更</p>
 
-            </div>
-            <div class="form__content toggle_contents">
-                <p class="form__descript">パスワードを変更します。<br>
-                    現在のパスワードと新しいパスワードを<br class="myMenu__descropt__line">入力してください。</p>
-                <div>
-                    <label class="textfield__label" for="Password">現在のパスワード</label>
                 </div>
-                <div class="err_msg"></div>
-                <div class="textfield__area">
-                    <input type="password" class="textfield__input" name="old_pass" placeholder="パスワードを入力してください。">
-                </div>
-                <div>
-                    <label class="textfield__label" for="Password">新しいパスワード</label><span>&nbsp;&nbsp;&nbsp;半角英数字6文字以上</span>
-                </div>
-                <div class="err_msg"></div>
-                <div class="textfield__area">
-                    <input type="password" class="textfield__input" name="new_pass" placeholder="パスワードを入力してください。">
-                </div>
-                <div>
-                    <label class="textfield__label" for="Password">新しいパスワード(確認)</label>
-                </div>
-                <div class="err_msg"></div>
-                <div class="textfield__area">
-                    <input type="password" class="textfield__input" name="new_pass_retry" placeholder="パスワードを入力してください。">
-                </div>
-                <div class="btn__myMenu__user btn__form">
-                    <input class="btn" type="submit" name="submit" value="送信">
-                </div>
-            </div>
+                @if($errors->has('old_pass') || $errors->has('password'))
+                <form class="form__content toggle_contents" action="myMenu/changePassword" method="post" style="display:block;">
+                    @else
+                    <form class="form__content toggle_contents" action="myMenu/changePassword" method="post">
+                        @endif
+                        {{ csrf_field() }}
+                        <input type="hidden" name="err_dummy">
+                        <p class="form__descript">パスワードを変更します。<br>
+                            現在のパスワードと新しいパスワードを<br class="myMenu__descropt__line">入力してください。</p>
+                        <div>
+                            <label class="textfield__label" for="Password">現在のパスワード</label>
+                        </div>
+                        @if($errors->has('old_pass'))
+                        <div class="err__msg">{{$errors->first('old_pass')}}</div>
+                        @endif
+                        <div class="textfield__area">
+                            <input type="password" class="textfield__input" name="old_pass" placeholder="パスワードを入力してください。">
+                        </div>
+                        <div>
+                            <label class="textfield__label" for="Password">新しいパスワード</label><span>&nbsp;&nbsp;&nbsp;※半角英数字8桁</span>
+                        </div>
+                        @if($errors->has('password'))
+                        <div class="err__msg">{{$errors->first('password')}}</div>
+                        @endif
+                        <div class="textfield__area">
+                            <input type="password" class="textfield__input" name="password" placeholder="パスワードを入力してください。">
+                        </div>
+                        <div>
+                            <label class="textfield__label" for="Password">新しいパスワード(確認)</label>
+                        </div>
+                        <div class="textfield__area">
+                            <input type="password" class="textfield__input" name="password_confirmation" placeholder="パスワードを入力してください。">
+                        </div>
+                        <div class="btn__myMenu__user btn__form">
+                            <input class="btn" type="submit" name="submit" value="送信">
+                        </div>
+                    </form>
 
 
         </section>
@@ -141,13 +171,14 @@
                 <p>退会</p>
 
             </div>
-            <div class="form__content toggle_contents">
+            <form class="form__content toggle_contents" action="myMenu/withdraw" method="post">
+                {{ csrf_field() }}
                 <p class="form__descript withdraw__descropt">退会する場合は、<br class="myMenu__descropt__line">下記のボタンを押してください。</p>
 
                 <div class="btn__myMenu__user btn__form">
                     <input class="btn" type="submit" name="submit" value="退会">
                 </div>
-            </div>
+            </form>
 
         </section>
     </div>

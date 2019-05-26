@@ -50,7 +50,7 @@ $flg = false;
                 <div class="err__msg">{{$errors->first('password')}}</div>
                 @endif
                 <div class="textfield__area">
-                    <input type="password" class="textfield__input" name="password" placeholder="パスワードを入力してください。" value="{{old('password')}}">
+                    <input type="password" class="textfield__input" name="password" placeholder="パスワードを入力してください。">
                 </div>
                 <div>
                     <label class=" textfield__label" for="Password">パスワード(確認)</label>
@@ -59,7 +59,7 @@ $flg = false;
                 <div class="err__msg">{{$errors->first('password_confirmation')}}</div>
                 @endif
                 <div class="textfield__area">
-                    <input type="password" class="textfield__input" name="password_confirmation" placeholder="パスワードを入力してください。" value="{{old('password_re')}}">
+                    <input type="password" class="textfield__input" name="password_confirmation" placeholder="パスワードを入力してください。">
                 </div>
 
                 <div class="btn__content btn__form">

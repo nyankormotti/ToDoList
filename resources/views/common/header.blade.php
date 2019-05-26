@@ -2,10 +2,12 @@
 
 
 @if (Auth::check())
+
 <body class="wrap wrap__main">
-@else
-<body class="wrap wrap__top">
-@endif
+    @else
+
+    <body class="wrap wrap__top">
+        @endif
         <header class="header">
             <div class="header__section">
                 <h1 class="header__section__title">
@@ -35,4 +37,9 @@
             </div>
         </header>
         <div class="header__dummy"></div>
+
+        @if(!empty($status))
+        <div id="js-msg" class="fadein" style="display:none;">{{$status}}</div>
+        @endif
+
         @endsection

@@ -21,6 +21,7 @@ class TaskController extends Controller
 
         $id = Auth::id();
         $categoryData = Category::where('user_id', $id)->where('delete_flg',false)->get();
+        $status = $request->session()->get('status');
 
         if(!empty($request->search)){
             $query = Task::query();
@@ -50,14 +51,14 @@ class TaskController extends Controller
             }
             $taskData = $query->paginate(5);
 
-            return view('task', ['category_data' => $categoryData, 'task_data' => $taskData])
+            return view('task', ['category_data' => $categoryData, 'task_data' => $taskData,'status' => $status])
                 ->with('search_name', $s_name)
                 ->with('search_category', $s_category)
                 ->with('sort', $s_sort)
                 ->with( 'search', $s_submit);
         } else{
             $taskData = Task::where('user_id', $id)->where('done_flg', false)->orderBy('created_at', 'desc')->paginate(5);
-            return view('task', ['category_data' => $categoryData, 'task_data' => $taskData]);
+            return view('task', ['category_data' => $categoryData, 'task_data' => $taskData, 'status' => $status]);
         }
 
         
@@ -65,11 +66,13 @@ class TaskController extends Controller
 
     public function create(CreateTaskRequest $request)
     {
+        $category = Category::where('user_id', Auth::id())->where('category_no', $request->category_no)->first();
         $task = new Task;
         $task->task_name = $request->task_name;
         $task->user_id = Auth::id();
-        $task->category_id = $request->category_id;
+        $task->category_id = $category->id;
         $task->save();
+        $request->session()->flash('status', 'タスクを作成しました。');
 
         return redirect()->action('TaskController@index');
     }
@@ -79,6 +82,7 @@ class TaskController extends Controller
         $task = Task::where('id', $request->id)->first();
         $task->done_flg = true;
         $task->save();
+        $request->session()->flash('status', 'タスクを完了にしました。');
 
         return redirect()->action('TaskController@index', $request);
     }

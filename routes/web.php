@@ -32,7 +32,12 @@ Route::get('editTask', 'EditTaskController@index');
 Route::post('editTask', 'EditTaskController@edit');
 
 Route::get( 'myMenu', 'MyMenuController@index');
+// Route::get( 'myMenu/{message?}', 'MyMenuController@index');
+// Route::post('myMenu/{message?}', 'MyMenuController@index');
 Route::post( 'myMenu/registCategory', 'MyMenuController@registCategory');
+Route::post( 'myMenu/changeEmail', 'MyMenuController@changeEmail');
+Route::post( 'myMenu/changePassword', 'MyMenuController@changePassword');
+Route::post( 'myMenu/withdraw', 'MyMenuController@withdraw');
 
 // お問い合わせ
 Route::get('contact', 'ContactController@index');

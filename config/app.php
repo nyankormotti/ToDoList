@@ -175,7 +175,7 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-        App\Providers\SignUpServiceProvider::class,
+        App\Providers\ValidationServiceProvider::class,
         // App\Providers\TaskServiceProvider::class,
 
     ],
