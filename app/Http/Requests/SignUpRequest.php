@@ -30,7 +30,7 @@ class SignUpRequest extends FormRequest
     {
         return [
             'name' => 'required|between:0,30',
-            'email' => 'required|email|unique:users',
+            'email' => 'required|email|between:0,255|unique:users',
             'password' => 'required|alpha_num_check|size:8|confirmed'
         ];
     }
@@ -42,6 +42,7 @@ class SignUpRequest extends FormRequest
             'name.between' => '30文字以内で入力してください。',
             'email.required' =>'入力必須です。',
             'email.email' =>'メールアドレスの形式で入力してください。',
+            'email.between' => '255文字以内で入力してください。',
             'email.unique' =>'このメールアドレスはすでに使用されています。',
             'password.required' =>'入力必須です。',
             'password.alpha_num_check' =>'半角英数字にて入力してください。',

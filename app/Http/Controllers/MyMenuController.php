@@ -18,14 +18,10 @@ class MyMenuController extends Controller
 {
     public function index(){
 
-        
-            if (!Auth::check()) {
-                return redirect()->action('LoginTaskController@index');
-            }
-            $id = Auth::id();
-            $userData = User::where('id', $id)->first();
-            $categoryData = Category::where('user_id', $id)->where('delete_flg', false)->get();
-            return view('myMenu', ['user_data' => $userData, 'category_data' => $categoryData,]);
+        $id = Auth::id();
+        $userData = User::where('id', $id)->first();
+        $categoryData = Category::where('user_id', $id)->where('delete_flg', false)->get();
+        return view('myMenu', ['user_data' => $userData, 'category_data' => $categoryData,]);
         
     }
 

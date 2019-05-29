@@ -28,7 +28,7 @@ class LoginTaskRequest extends FormRequest
     public function rules()
     {
         return [
-            'email' => 'required|email',
+            'email' => 'required|email|between:0,255',
             'password' => 'required|alpha_num_check|size:8'
         ];
 
@@ -40,6 +40,7 @@ class LoginTaskRequest extends FormRequest
         return [
             'email.required' => '入力必須です。',
             'email.email' => 'メールアドレスの形式で入力してください。',
+            'email.between' => '255字以内で入力してください。',
             'password.required' => '入力必須です。',
             'password.alpha_num_check' => '半角英数字にて入力してください。',
             'password.size' => '8桁にて入力してください。',

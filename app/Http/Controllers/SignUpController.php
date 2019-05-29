@@ -13,17 +13,11 @@ class SignUpController extends Controller
 {
     public function index()
     {
-        
-            if (Auth::check()) {
-                return redirect()->action('TaskController@index');
-            }
-            return view('signUp');
-        
+        return view('signUp');
     }
 
     public function create(SignUpRequest $request)
     {
-       
             // userテーブル登録処理
             $user = new User;
             $user->name = $request->name;

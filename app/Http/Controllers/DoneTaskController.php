@@ -14,10 +14,6 @@ class DoneTaskController extends Controller
     public function index(DoneTaskRequest $request)
     {
 
-        if (!Auth::check()) {
-            return redirect()->action('LoginTaskController@index');
-        }
-
         $id = Auth::id();
         $categoryData = Category::where('user_id', $id)->where('delete_flg', false)->get();
         $status = $request->session()->get('status');

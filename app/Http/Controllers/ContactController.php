@@ -13,13 +13,8 @@ class ContactController extends Controller
 {
     public function index()
     {
-        
-            if (Auth::check()) {
-                $user = User::where('id', Auth::id())->first();
-            }
-            return view('contact');
-        
-        
+
+        return view('contact');
     }
 
     public function store(ContactRequest $request){

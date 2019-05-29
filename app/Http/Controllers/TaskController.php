@@ -15,10 +15,6 @@ class TaskController extends Controller
     public function index(Request $request)
     {
 
-        if (!Auth::check()) {
-            return redirect()->action('LoginTaskController@index');
-        }
-
         $id = Auth::id();
         $categoryData = Category::where('user_id', $id)->where('delete_flg',false)->get();
         $status = $request->session()->get('status');
@@ -30,7 +26,6 @@ class TaskController extends Controller
             $s_category = $request->search_category;
             $s_sort = $request->sort;
             $s_submit = $request->search;
-            
 
             $query->where('user_id', $id)->where('done_flg',false);
 

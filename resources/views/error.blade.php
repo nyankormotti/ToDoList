@@ -10,7 +10,7 @@
 <body class="wrap wrap__top">
     <main class="main">
         <div class="form form--withdraw">
-            <h2 class="form__title">例外発生</h2>
+            <h2 class="form__title">Error</h2>
             <div class="form__content">
                 <p class="form__descript form__descript--withdraw">エラーが発生しました。<br>しばらく待ってからやり直してください。</p>
 

@@ -28,7 +28,7 @@ class ContactRequest extends FormRequest
     public function rules()
     {
         return [
-            'email' => 'required|email|between:0,100',
+            'email' => 'required|email|between:0,255',
             'comment' => 'between:0,1000'
         ];
     }
@@ -38,7 +38,7 @@ class ContactRequest extends FormRequest
         return [
             'email.required' => '入力必須です。',
             'email.email' => 'メールアドレスの形式で入力してください。',
-            'email.between' => '100文字以内で入力してください。',
+            'email.between' => '255文字以内で入力してください。',
             'comment.between' => '500文字以内で入力してください。'
         ];
     }
