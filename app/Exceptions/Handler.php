@@ -3,7 +3,9 @@
 namespace App\Exceptions;
 
 use Exception;
+use \Illuminate\Database\QueryException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class Handler extends ExceptionHandler
 {
@@ -46,6 +48,9 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
+        if ($exception instanceof QueryException || $exception instanceof \Swift_TransportException || $exception instanceof NotFoundHttpException) {
+            return response()->view( 'error', ['exception' => $exception]);
+        }
         return parent::render($request, $exception);
     }
 }

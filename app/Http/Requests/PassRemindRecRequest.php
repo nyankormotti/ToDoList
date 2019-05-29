@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class CreateTaskRequest extends FormRequest
+class PassRemindRecRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -13,7 +13,7 @@ class CreateTaskRequest extends FormRequest
      */
     public function authorize()
     {
-        if ($this->path() == 'task__create') {
+        if ($this->path() == 'passwordRemindRecieve') {
             return true;
         } else {
             return false;
@@ -28,15 +28,15 @@ class CreateTaskRequest extends FormRequest
     public function rules()
     {
         return [
-            'task_name' => 'required|between:0,15',
+            'auth_key' => 'required|same_auth_key_verifi'
         ];
     }
 
     public function messages()
     {
         return [
-            'task_name.required' => '入力必須です。',
-            'task_name.between' => '15文字以内で入力してください。'
+            'auth_key.required' => '入力必須です。',
+            'auth_key.same_auth_key_verifi' => '認証キーが違います。'
         ];
     }
 }

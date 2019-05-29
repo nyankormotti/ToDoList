@@ -58,4 +58,14 @@ $(function(){
         $jsShowMsg.slideToggle('slow');
         setTimeout(function () { $jsShowMsg.slideToggle('slow'); }, 5000);
     }
+
+    $(function () {
+        $('#openModal').click(function () {
+            $('#modalArea').fadeIn();
+        });
+        $('#closeModal , #modalBg').click(function () {
+            $('#modalArea').fadeOut();
+        });
+    });
+    
 });

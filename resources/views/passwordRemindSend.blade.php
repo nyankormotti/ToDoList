@@ -18,14 +18,16 @@ $flg = false;
         <div class="form__content">
             <p class="form__descript">ご指定いただいたメールアドレス宛に、<br>
                 パスワード再発行用の認証キーを送付します。</p>
-            <form action="passwordRemindRecieve" method="post" class="form__block">
-                <input type="hidden" name="_token">
+            <form action="passwordRemindSend" method="post" class="form__block">
+                {{ csrf_field() }}
                 <div>
                     <label class="textfield__label" for="Email">メールアドレス</label>
                 </div>
-                <div class="err_msg"></div>
+                @if($errors->has('email'))
+                <div class="err__msg">{{$errors->first('email')}}</div>
+                @endif
                 <div class="textfield__area">
-                    <input type="text" class="textfield__input" name="email" placeholder="メールアドレスを入力してください。" autocomplete="off">
+                    <input type="text" class="textfield__input" name="email" placeholder="メールアドレスを入力してください。" autocomplete="off" value="{{old('email')}}">
                 </div>
 
                 <div class="btn__content btn__form">
@@ -34,7 +36,7 @@ $flg = false;
             </form>
 
             <p class="link__content">
-                <a class="link" href="index.php">トップページ</a>
+                <a class="link" href="/">トップページ</a>
             </p>
         </div>
     </div>

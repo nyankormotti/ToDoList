@@ -16,7 +16,7 @@
             <!-- create form -->
             <div class="create">
                 <h2 class="sidebar__title create__title">Create Task</h2>
-                <form class="sidebar__form" action="/task/create" method="post">
+                <form class="sidebar__form" action="/task__create" method="post">
                     {{ csrf_field() }}
                     @if($errors->has('task_name'))
                     <div class="err__msg--create">{{$errors->first('task_name')}}</div>
@@ -159,9 +159,9 @@
                         <div class="task__listarea--action">
                             <div class="btntask__content">
                                 @if(!empty($search))
-                                <a class="btntask__content--action btntask__content--action--finish" href="task/done?id={{$t_data->id}}&search_name={{$search_name}}&search_category={{$search_category}}&sort={{$sort}}&search={{$search}}">完了</a>
+                                <a class="btntask__content--action btntask__content--action--finish" href="task__done?id={{$t_data->id}}&search_name={{$search_name}}&search_category={{$search_category}}&sort={{$sort}}&search={{$search}}">完了</a>
                                 @else
-                                <a class="btntask__content--action btntask__content--action--finish" href="task/done?id={{$t_data->id}}">完了</a>
+                                <a class="btntask__content--action btntask__content--action--finish" href="task__done?id={{$t_data->id}}">完了</a>
                                 @endif
                             </div>
                             <div class="btntask__content">

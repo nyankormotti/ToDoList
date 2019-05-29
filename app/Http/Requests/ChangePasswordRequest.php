@@ -13,7 +13,7 @@ class ChangePasswordRequest extends FormRequest
      */
     public function authorize()
     {
-        if ($this->path() == 'myMenu/changePassword') {
+        if ($this->path() == 'myMenu__changePassword') {
             return true;
         } else {
             return false;
@@ -28,7 +28,7 @@ class ChangePasswordRequest extends FormRequest
     public function rules()
     {
         return [
-            'old_pass' => 'required|alpha_num_check|pass_verifi|size:8',
+            'old_pass' => 'required|alpha_num_check|pass_verifi|size:8|different:password',
             'password' => 'required|alpha_num_check|size:8|confirmed'
         ];
     }
@@ -40,6 +40,7 @@ class ChangePasswordRequest extends FormRequest
             'old_pass.alpha_num_check' => '半角英数字にて入力してください。',
             'old_pass.pass_verifi' => '現在のパスワードが違います。',
             'old_pass.size' => '8桁にて入力してください。',
+            'old_pass.different' => '新しいパスワードが現在のものと同じです。',
             'password.required' => '入力必須です。',
             'password.alpha_num_check' => '半角英数字にて入力してください。',
             'password.size' => '8桁にて入力してください。',

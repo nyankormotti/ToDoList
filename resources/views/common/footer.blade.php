@@ -1,10 +1,10 @@
 @section('footer')
 <footer class="footer">
     Copyright
-    @if (Auth::check())
-    <a href="/task" class="footer__menu">
+    @if (!empty($exception) || !Auth::check())
+    <a href="/" class="footer__menu">
         @else
-        <a href="/" class="footer__menu">
+        <a href="/task" class="footer__menu">
             @endif
             nyanko_R_motti</a> .All Rights Reserved
         &nbsp;&nbsp;&nbsp;&nbsp;<a href="contact" class="footer__menu footer__menu--contact">CONTACT</a>

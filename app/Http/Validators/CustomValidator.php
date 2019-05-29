@@ -22,4 +22,23 @@ class CustomValidator extends Validator
             return false;
         }
     }
+
+    public function validateSameEmailVerifi($attribute, $value, $parameters){
+        $user = User::where('email', $value)->where('delete_flg',false)->count();
+
+        if($user == 0){
+            return false;
+        } else{
+            return true;
+        }
+    }
+
+    public function validateSameAuthKeyVerifi($attribute, $value, $parameters){
+        $auth_key = session()->get( 'auth_key');
+        if($auth_key !== $value){
+            return false;
+        } else{
+            return true;
+        }
+    }
 }

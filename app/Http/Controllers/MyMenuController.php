@@ -2,29 +2,34 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Category;
+
 use App\User;
+use App\Category;
+use App\Mail\ChangePassMail;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\Http\Requests\RegistCategoryRequest;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use App\Http\Requests\ChangeEmailRequest;
 use App\Http\Requests\ChangePasswordRequest;
-use Illuminate\Support\Facades\Hash;
+use App\Http\Requests\RegistCategoryRequest;
 
 class MyMenuController extends Controller
 {
     public function index(){
 
-        if (!Auth::check()) {
-            return redirect()->action('LoginTaskController@index');
-        }
-        $id = Auth::id();
-        $userData = User::where('id', $id)->first();
-        $categoryData = Category::where('user_id', $id)->where('delete_flg', false)->get();
-        return view('myMenu',['user_data'=> $userData,'category_data' => $categoryData,]);
+        
+            if (!Auth::check()) {
+                return redirect()->action('LoginTaskController@index');
+            }
+            $id = Auth::id();
+            $userData = User::where('id', $id)->first();
+            $categoryData = Category::where('user_id', $id)->where('delete_flg', false)->get();
+            return view('myMenu', ['user_data' => $userData, 'category_data' => $categoryData,]);
+        
     }
 
-    public function registCategory( RegistCategoryRequest $request){
+    public function registCategory(RegistCategoryRequest $request){
 
         $id = Auth::id();
         $category1 = Category::where('user_id', $id)->where('category_no', 1)->where('delete_flg', false)->first();
@@ -63,19 +68,21 @@ class MyMenuController extends Controller
 
         $id = Auth::id();
         $user = User::where('id', $id)->first( );
-        $user->password = Hash::make( $request->password);
+        $user->password = Hash::make($request->password);
         $user->save();
+
+        Mail::to($user->email)->send(new ChangePassMail($user->name, $request->password));
 
         $request->session()->flash('status', 'パスワードを変更しました。');
         return redirect()->action('TaskController@index');
     }
 
-    public function  withdraw(){
+    public function  withdraw(Request $request){
         $id = Auth::id();
         $user = User::where('id', $id)->first();
         $user->delete_flg = true;
         $user->save();
-        return redirect()->action('LoginTaskController@logoutTask');
+        return redirect()->action( 'CompWithdrawController@index', $request);
     }
 
 }

@@ -20,29 +20,31 @@ Route::get( 'signup', 'SignUpController@index');
 Route::post( 'signup', 'SignUpController@create');
 
 Route::get( 'passwordRemindSend', 'PasswordRemindSendContoroller@index');
+Route::post( 'passwordRemindSend', 'PasswordRemindSendContoroller@store');
 Route::get( 'passwordRemindRecieve', 'PasswordRemindRecieveController@index');
+Route::post( 'passwordRemindRecieve', 'PasswordRemindRecieveController@store');
 
 // ログイン後
 Route::get( 'task', 'TaskController@index');
-Route::get( 'task/done', 'TaskController@done');
-Route::post('task/create', 'TaskController@create');
+Route::get( 'task__done', 'TaskController@done');
+Route::post('task__create', 'TaskController@create');
 Route::get('doneTask', 'DoneTaskController@index');
-Route::get('doneTask/restore', 'DoneTaskController@restore');
+Route::get('doneTask__restore', 'DoneTaskController@restore');
 Route::get('editTask', 'EditTaskController@index');
 Route::post('editTask', 'EditTaskController@edit');
+Route::get( 'CompWithdraw', 'CompWithdrawController@index');
 
 Route::get( 'myMenu', 'MyMenuController@index');
-// Route::get( 'myMenu/{message?}', 'MyMenuController@index');
-// Route::post('myMenu/{message?}', 'MyMenuController@index');
-Route::post( 'myMenu/registCategory', 'MyMenuController@registCategory');
-Route::post( 'myMenu/changeEmail', 'MyMenuController@changeEmail');
-Route::post( 'myMenu/changePassword', 'MyMenuController@changePassword');
-Route::post( 'myMenu/withdraw', 'MyMenuController@withdraw');
+Route::post( 'myMenu__registCategory', 'MyMenuController@registCategory');
+Route::post( 'myMenu__changeEmail', 'MyMenuController@changeEmail');
+Route::post( 'myMenu__changePassword', 'MyMenuController@changePassword');
+Route::post( 'myMenu__withdraw', 'MyMenuController@withdraw');
 
 // お問い合わせ
 Route::get('contact', 'ContactController@index');
+Route::post('contact', 'ContactController@store');
 
-Auth::routes();
+// 例外処理画面
+Route::get('error', 'ErrorController@index');
 
-Route::get('/home', 'HomeController@index')->name('home');
 

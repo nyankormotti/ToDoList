@@ -13,7 +13,7 @@ class RegistCategoryRequest extends FormRequest
      */
     public function authorize()
     {
-        if ($this->path() == 'myMenu/registCategory') {
+        if ($this->path() == 'myMenu__registCategory') {
             return true;
         } else {
             return false;

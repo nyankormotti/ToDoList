@@ -12,6 +12,9 @@
 
     <div class="myMenu">
         <h1 class="myMenu__maintitle">My Menu</h1>
+        @if(!empty($exception)&&count($category_data) == 0)
+        <div class="myMenu__parts err__msg">エラーが発生しました。<br>しばらく待ってからやり直してください</div>
+        @endif
         <!-- カテゴリー編集 -->
         <section class="myMenu__parts myMenu__cate toggle_wrap">
             @if($errors->has('category1')||$errors->has('category2')||$errors->has('category3')||$errors->has('category4')||$errors->has('category5'))
@@ -21,10 +24,11 @@
                     @endif
                     <p>カテゴリー編集</p>
                 </div>
+                @if(count($category_data) > 0)
                 @if($errors->has('category1')||$errors->has('category2')||$errors->has('category3')||$errors->has('category4')||$errors->has('category5'))
-                <form class="form__content toggle_contents" action="myMenu/registCategory" method="post" style="display:block;">
+                <form class="form__content toggle_contents" action="myMenu__registCategory" method="post" style="display:block;">
                     @else
-                    <form class="form__content toggle_contents" action="myMenu/registCategory" method="post">
+                    <form class="form__content toggle_contents" action="myMenu__registCategory" method="post">
                         @endif
                         {{ csrf_field() }}
                         <p class="form__descript">5つのカテゴリ名を編集できます。</p>
@@ -39,6 +43,7 @@
                         @elseif($errors->has('category5'))
                         <div class="err__msg">{{$errors->first('category5')}}</div>
                         @endif
+
 
                         @foreach($category_data as $c_data)
                         <div class="myMenuCategory">
@@ -72,11 +77,13 @@
                         </div>
                         @endforeach
 
-
                         <div class="btn__myMenu__user btn__form">
                             <input class="btn" type="submit" name="category_regist" value="登録">
                         </div>
+                        @endif
+
                     </form>
+
         </section>
 
         <!-- メールアドレス変更 -->
@@ -89,9 +96,9 @@
                     <p>メールアドレス変更</p>
                 </div>
                 @if($errors->has('email'))
-                <form class="form__content toggle_contents" action="myMenu/changeEmail" method="post" style="display:block;">
+                <form class="form__content toggle_contents" action="myMenu__changeEmail" method="post" style="display:block;">
                     @else
-                    <form class="form__content toggle_contents" action="myMenu/changeEmail" method="post">
+                    <form class="form__content toggle_contents" action="myMenu__changeEmail" method="post">
                         @endif
                         {{ csrf_field() }}
                         <p class="form__descript">メールアドレスを変更できます。</p>
@@ -104,8 +111,10 @@
                         <div class="textfield__area">
                             @if($errors->has('email'))
                             <input type="text" class="textfield__input" name="email" autocomplete="off" value="{{old('email')}}">
-                            @else
+                            @elseif(!empty($user_data))
                             <input type="text" class="textfield__input" name="email" autocomplete="off" value="{{$user_data->email}}">
+                            @else
+                            <input type="text" class="textfield__input" name="email" autocomplete="off">
                             @endif
                         </div>
                         <div class="btn__myMenu__user btn__form">
@@ -125,9 +134,9 @@
 
                 </div>
                 @if($errors->has('old_pass') || $errors->has('password'))
-                <form class="form__content toggle_contents" action="myMenu/changePassword" method="post" style="display:block;">
+                <form class="form__content toggle_contents" action="myMenu__changePassword" method="post" style="display:block;">
                     @else
-                    <form class="form__content toggle_contents" action="myMenu/changePassword" method="post">
+                    <form class="form__content toggle_contents" action="myMenu__changePassword" method="post">
                         @endif
                         {{ csrf_field() }}
                         <input type="hidden" name="err_dummy">
@@ -161,8 +170,6 @@
                             <input class="btn" type="submit" name="submit" value="送信">
                         </div>
                     </form>
-
-
         </section>
 
         <!-- 退会 -->
@@ -171,17 +178,41 @@
                 <p>退会</p>
 
             </div>
-            <form class="form__content toggle_contents" action="myMenu/withdraw" method="post">
-                {{ csrf_field() }}
+            <div class="form__content toggle_contents" action="myMenu__withdraw" method="post">
+
                 <p class="form__descript withdraw__descropt">退会する場合は、<br class="myMenu__descropt__line">下記のボタンを押してください。</p>
 
                 <div class="btn__myMenu__user btn__form">
-                    <input class="btn" type="submit" name="submit" value="退会">
+                    <button id="openModal" class="btn" name="submit">退会</button>
                 </div>
-            </form>
+            </div>
 
         </section>
     </div>
+
+    <!-- モーダルエリアここから -->
+    <section id="modalArea" class="modal__Area">
+        <div id="modalBg" class="modal__Bg"></div>
+        <form class="modal__Wrapper" action="myMenu__withdraw" method="post">
+            {{ csrf_field() }}
+            <div class="modal__Contents">
+                <p class="modal__state">本当に退会しますか？</p>
+                <div class="modal__btn__part">
+                    <div class="btn__myMenu__user btn__form">
+                        <input id="btn--withdraw__btn" class="btn withdraw__btn" type="submit" name="submit" value="退会">
+                    </div>
+                    <div class="btn__myMenu__user btn__form">
+                        <div id="closeModal" class="btn modal__btn">閉じる</div>
+                    </div>
+                </div>
+
+            </div>
+            <div id="closeModal" class="closeModal">
+                ×
+            </div>
+        </form>
+    </section>
+    <!-- モーダルエリアここまで -->
 
 
 </main>

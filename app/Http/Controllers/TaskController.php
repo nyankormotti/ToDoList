@@ -61,7 +61,6 @@ class TaskController extends Controller
             return view('task', ['category_data' => $categoryData, 'task_data' => $taskData, 'status' => $status]);
         }
 
-        
     }
 
     public function create(CreateTaskRequest $request)

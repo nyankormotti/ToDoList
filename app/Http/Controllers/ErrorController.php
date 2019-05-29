@@ -1,0 +1,12 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+
+class ErrorController extends Controller
+{
+    public function index($exception){
+        return view('error', ['exception' => $exception]);
+    }
+}

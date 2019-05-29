@@ -160,9 +160,9 @@
                         <div class="task__listarea--action">
                             <div class="btntask__content">
                                 @if(!empty($search))
-                                <a class="btntask__content--action btntask__content--action--restore" href="doneTask/restore?id={{$t_data->id}}&search_name={{$search_name}}&search_category={{$search_category}}&strat_date={{$strat_date}}&end_date={{$end_date}}&sort={{$sort}}&search={{$search}}">復元</a>
+                                <a class="btntask__content--action btntask__content--action--restore" href="doneTask__restore?id={{$t_data->id}}&search_name={{$search_name}}&search_category={{$search_category}}&strat_date={{$strat_date}}&end_date={{$end_date}}&sort={{$sort}}&search={{$search}}">復元</a>
                                 @else
-                                <a class="btntask__content--action btntask__content--action--restore" href="doneTask/restore?id={{$t_data->id}}">復元</a>
+                                <a class="btntask__content--action btntask__content--action--restore" href="doneTask__restore?id={{$t_data->id}}">復元</a>
                                 @endif
                             </div>
                         </div>

@@ -13,7 +13,7 @@ class ChangeEmailRequest extends FormRequest
      */
     public function authorize()
     {
-        if ($this->path() == 'myMenu/changeEmail') {
+        if ($this->path() == 'myMenu__changeEmail') {
             return true;
         } else {
             return false;
