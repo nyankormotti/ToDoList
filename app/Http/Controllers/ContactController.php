@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Mail;
 use App\User;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\ContactRequest;
+use App\Http\Requests\ContactAfterRequest;
 
 class ContactController extends Controller
 {
@@ -20,24 +21,29 @@ class ContactController extends Controller
     public function store(ContactRequest $request){
         
             $fromEmail = $request->email;
-            if (Auth::check()) {
-                $user = User::where('id', Auth::id())->first();
-                $fromEmail = $user->email;
-            }
             $comment = $request->comment;
 
             Mail::to('info@info.com')->send(new ContactMail($fromEmail, $comment));
 
             $request->session()->flash('status', 'お問い合わせメールを送信しました。');
 
-            if(Auth::check()){
-                return redirect()->action('TaskController@index', $request);
-            } else{
-                return redirect()->action('IndexController@index', $request);
-            }
-            
+            return redirect()->action('IndexController@index', $request);
         
+    }
 
-        
+    public function store__after( ContactAfterRequest $request)
+    {
+
+        $user = User::where('id', Auth::id())->first();
+        $fromEmail = $user->email;
+
+        $comment = $request->comment;
+
+        Mail::to('info@info.com')->send(new ContactMail($fromEmail, $comment));
+
+        $request->session()->flash('status', 'お問い合わせメールを送信しました。');
+
+        return redirect()->action('TaskController@index', $request);
+
     }
 }

@@ -29,7 +29,7 @@ class SignUpRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|between:0,30',
+            'name' => 'required|between:0,10',
             'email' => 'required|email|between:0,255|unique:users',
             'password' => 'required|alpha_num_check|size:8|confirmed'
         ];
@@ -39,7 +39,7 @@ class SignUpRequest extends FormRequest
     {
         return [
             'name.required' => '入力必須です。',
-            'name.between' => '30文字以内で入力してください。',
+            'name.between' => '10文字以内で入力してください。',
             'email.required' =>'入力必須です。',
             'email.email' =>'メールアドレスの形式で入力してください。',
             'email.between' => '255文字以内で入力してください。',

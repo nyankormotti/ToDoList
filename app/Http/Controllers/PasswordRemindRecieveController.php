@@ -24,6 +24,8 @@ class PasswordRemindRecieveController extends Controller
         
         $toEmail = $request->session()->get('toEmail');
         $auth_key = session()->get('auth_key');
+        session()->forget('toEmail');
+        session()->forget('auth_key');
 
         if($auth_key !== $request->auth_key){
             return view('passwordRemindRecieve');

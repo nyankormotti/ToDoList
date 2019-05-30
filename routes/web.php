@@ -46,6 +46,7 @@ Route::post( 'myMenu__withdraw', 'MyMenuController@withdraw')->middleware(AfterL
 // お問い合わせ
 Route::get('contact', 'ContactController@index');
 Route::post('contact', 'ContactController@store');
+Route::post( 'contact__after', 'ContactController@store__after');
 
 // 例外処理画面
 Route::get('error', 'ErrorController@index');
