@@ -78,6 +78,15 @@ class TaskController extends Controller
         $task->save();
         $request->session()->flash('status', 'タスクを完了にしました。');
 
-        return redirect()->action('TaskController@index', $request);
+        return redirect()->action('TaskController@index');
     }
+    // public function done(Request $request){
+
+    //     $task = Task::where('id', $request->id)->first();
+    //     $task->done_flg = true;
+    //     $task->save();
+    //     $request->session()->flash('status', 'タスクを完了にしました。');
+
+    //     return redirect()->action('TaskController@index', $request);
+    // }
 }

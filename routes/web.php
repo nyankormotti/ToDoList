@@ -29,7 +29,8 @@ Route::post( 'passwordRemindRecieve', 'PasswordRemindRecieveController@store');
 
 // ログイン後
 Route::get( 'task', 'TaskController@index')->middleware( AfterLoginMiddleware::class);
-Route::get( 'task__done', 'TaskController@done')->middleware(AfterLoginMiddleware::class);
+Route::post('task__done', 'TaskController@done');
+// Route::get( 'task__done', 'TaskController@done')->middleware(AfterLoginMiddleware::class);
 Route::post('task__create', 'TaskController@create');
 Route::get('doneTask', 'DoneTaskController@index')->middleware(AfterLoginMiddleware::class);
 Route::get('doneTask__restore', 'DoneTaskController@restore')->middleware(AfterLoginMiddleware::class);
@@ -50,5 +51,7 @@ Route::post( 'contact__after', 'ContactController@store__after');
 
 // 例外処理画面
 Route::get('error', 'ErrorController@index');
+
+Route::get('sample', 'SampleController@index');
 
 

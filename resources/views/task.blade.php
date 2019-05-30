@@ -157,13 +157,12 @@
                             </div>
                         </div>
                         <div class="task__listarea--action">
-                            <div class="btntask__content">
-                                @if(!empty($search))
-                                <a class="btntask__content--action btntask__content--action--finish" href="task__done?id={{$t_data->id}}&search_name={{$search_name}}&search_category={{$search_category}}&sort={{$sort}}&search={{$search}}">完了</a>
-                                @else
-                                <a class="btntask__content--action btntask__content--action--finish" href="task__done?id={{$t_data->id}}">完了</a>
-                                @endif
-                            </div>
+                            {{Form::open(['url' => 'task__done', 'files' => true, 'class' => 'btntask__content'])}}
+                            {{ csrf_field() }}
+                            <input type="hidden" name="id" value="{{$t_data->id}}">
+                            <input class="btntask__content--action btntask__content--action--finish" type="submit" name="done" value="完了">
+                            {{Form::close()}}
+                            
                             <div class="btntask__content">
                                 @if(!empty($search))
                                 <a class="btntask__content--action btntask__content--action--edit" href="editTask?id={{$t_data->id}}&search_name={{$search_name}}&search_category={{$search_category}}&sort={{$sort}}&search={{$search}}">編集</a>
@@ -171,10 +170,17 @@
                                 <a class="btntask__content--action btntask__content--action--edit" href="editTask?id={{$t_data->id}}">編集</a>
                                 @endif
                             </div>
+
                         </div>
                     </div>
+
                     @endforeach
                     @endif
+                    <form action="task__done" method="post" class="btntask__content">
+                        {{ csrf_field() }}
+                        <input type="hidden" name="id" value="">
+                        <input class="btntask__content--action btntask__content--action--finish" type="submit" name="done" value="完了">
+                    </form>
                 </div>
 
                 <!-- pagination -->

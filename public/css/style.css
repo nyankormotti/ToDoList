@@ -584,6 +584,12 @@ textarea::placeholder {
   display: flex;
   align-items: center;
   justify-content: center; }
+  .btntask__content__form {
+    color: white;
+    min-width: 60px;
+    height: 50%;
+    font-size: 14px;
+    font-weight: bold; }
   .btntask__content--action {
     display: block;
     text-decoration: none;

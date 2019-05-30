@@ -235,6 +235,13 @@
     display:flex;
     align-items:center;
     justify-content:center;
+    &__form{
+        color:$font-color_white;
+        min-width:60px;
+        height:50%;
+        font-size:$font-size_m;
+        font-weight:bold;
+    }
     &--action{
         display:block;
         text-decoration:none;
