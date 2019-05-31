@@ -13,7 +13,7 @@ $flg = false;
 <!-- main -->
 <main class="main main1">
 
-    <div class="form">
+    <div class="form form__passRemind">
         <h2 class="form__title">Password Remind</h2>
         <div class="form__content">
             <p class="form__descript">ご指定いただいたメールアドレス宛に、<br>

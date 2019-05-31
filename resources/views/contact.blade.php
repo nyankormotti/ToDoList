@@ -9,7 +9,7 @@
 <!-- main -->
 <main class="main main1">
 
-    <div class="form">
+    <div class="form form__beforelogin">
         <h2 class="form__title">Contact</h2>
         <div class="form__content">
             <p class="form__descript">メールアドレスと内容をご記載の上、お問い合わせください。</p>

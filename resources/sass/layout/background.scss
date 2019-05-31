@@ -16,9 +16,19 @@
 
 .main{
     width:100%;
-    min-height:calc(100vh - 185px);
+    min-height:calc(100vh - 200px);
+    // @include lg(){
+    //     min-height:calc(100vh - 105px);
+    // }
+    @include mq(){
+        min-height:calc(100vh - 200px);
+    }
     &__task{
         min-height:calc(100vh - 130px);
+    }
+    &__beforelogin{
+        min-height:calc(100vh - 265px);
+        
     }
 }
 

@@ -15,7 +15,7 @@ $flg = false;
 <!-- main -->
 <main class="main main1">
 
-    <div class="form">
+    <div class="form form__signup">
         <h2 class="form__title">Sign Up</h2>
         <div class="form__content">
             <p class="form__descript">会員登録に利用するログインメールアドレスを記載してください。</p>

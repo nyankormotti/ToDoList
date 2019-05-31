@@ -13,7 +13,7 @@ $flg = false;
 <!-- main -->
 <main class="main main1">
 
-    <div class="form">
+    <div class="form form__passRemind">
         <h2 class="form__title">Password Remind</h2>
         <div class="form__content">
             <p class="form__descript">受信されたメールに記載のある認証キーをご記載ください。<br>

@@ -98,7 +98,7 @@
                             <input class="btn" type="submit" name="search" value="検索">
                         </div>
                     </div>
-
+                </form>
             </div>
 
         </section>
@@ -158,13 +158,18 @@
                             </div>
                         </div>
                         <div class="task__listarea--action">
-                            <div class="btntask__content">
-                                @if(!empty($search))
-                                <a class="btntask__content--action btntask__content--action--restore" href="doneTask__restore?id={{$t_data->id}}&search_name={{$search_name}}&search_category={{$search_category}}&strat_date={{$strat_date}}&end_date={{$end_date}}&sort={{$sort}}&search={{$search}}">復元</a>
-                                @else
-                                <a class="btntask__content--action btntask__content--action--restore" href="doneTask__restore?id={{$t_data->id}}">復元</a>
-                                @endif
-                            </div>
+                            {{Form::open(['url' => 'doneTask__restore', 'files' => true, 'class' => 'btntask__content'])}}
+                            <input type="hidden" name="id" value="{{$t_data->id}}">
+                            @if(!empty($search))
+                            <input type="hidden" name="search_name" value="{{$search_name}}">
+                            <input type="hidden" name="search_category" value="{{$search_category}}">
+                            <input type="hidden" name="strat_date" value="{{$strat_date}}">
+                            <input type="hidden" name="end_date" value="{{$end_date}}">
+                            <input type="hidden" name="sort" value="{{$sort}}">
+                            <input type="hidden" name="search" value="{{$search}}">
+                            @endif
+                            <input class="btntask__content--action btntask__content--action--restore" type="submit" name="restore" value="復元">
+                            {{Form::close()}}
                         </div>
                     </div>
                     @endforeach

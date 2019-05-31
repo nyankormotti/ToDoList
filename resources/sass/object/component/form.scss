@@ -17,9 +17,27 @@ textarea::placeholder{
     margin-left:auto;
     margin-bottom:80px;
     background:$background-color_white;
+    
     @include mq(){
         width:80%;
         
+    }
+    &__beforelogin{
+        @include mq(){
+            // margin-top:80px;
+        }
+    }
+    &__signup{
+        @include mq(){
+            margin-bottom:15px;
+        }
+        
+    }
+    &__passRemind{
+        @include mq(){
+            margin-bottom:15px;
+        }
+
     }
     &__title{
         width:100%;
@@ -62,14 +80,15 @@ textarea::placeholder{
     }
     &--edit{
         width:30%;
-        margin-bottom:0;
+        margin-bottom:20px;
         @include mq(){
             width:80%;
+            margin-bottom:0;
         }
     }
     &--withdraw{
         width:30%;
-        margin-bottom:0;
+        margin-bottom:20px;
         @include mq(){
             width:80%;
         }

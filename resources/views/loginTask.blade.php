@@ -13,9 +13,9 @@ $flg = false;
 
 
 <!-- main -->
-<main class="main main1">
+<main class="main main1 main__beforelogin">
 
-    <div class="form">
+    <div class="form form__beforelogin">
         <h2 class="form__title">Login</h2>
         <div class="form__content">
             <p class="form__descript">ログインメールアドレスとパスワードを入力してください。</p>
@@ -53,14 +53,14 @@ $flg = false;
                 <div class="btn__content btn__form">
                     <input class="btn" type="submit" name="submit" value="ログイン">
                 </div>
-                </form>
+            </form>
 
-                <p class="link__content">
-                    <a class="link" href="signup">新規会員登録</a>
-                </p>
-                <p class="link__content">
-                    <a class="link" href="passwordRemindSend">パスワードをお忘れの方はこちら</a>
-                </p>
+            <p class="link__content">
+                <a class="link" href="signup">新規会員登録</a>
+            </p>
+            <p class="link__content">
+                <a class="link" href="passwordRemindSend">パスワードをお忘れの方はこちら</a>
+            </p>
         </div>
 
 

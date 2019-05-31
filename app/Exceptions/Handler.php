@@ -51,14 +51,14 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
-        // if ($exception instanceof QueryException 
-        // || $exception instanceof \Swift_TransportException 
-        // || $exception instanceof NotFoundHttpException
-        // || $exception instanceof MethodNotAllowedHttpException 
-        // || $exception instanceof FatalThrowableError 
-        // || $exception instanceof ErrorException) {
-        //     return response()->view( 'error', ['exception' => $exception]);
-        // }
+        if ($exception instanceof QueryException 
+        || $exception instanceof \Swift_TransportException 
+        || $exception instanceof NotFoundHttpException
+        || $exception instanceof MethodNotAllowedHttpException 
+        || $exception instanceof FatalThrowableError 
+        || $exception instanceof ErrorException) {
+            return response()->view( 'error', ['exception' => $exception]);
+        }
 
 
         return parent::render($request, $exception);
